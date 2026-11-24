@@ -5,9 +5,15 @@ from fastapi.middleware.cors import CORSMiddleware
 
 # Create FastAPI application
 app = FastAPI(title="Text Intelligence API")
+@app.get("/")
+def health_check():
+    return {"status": "Backend is running"}
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:5173"],
+    allow_origins=[
+    "http://localhost:5173",
+    "https://text-intelligence-ml.vercel.app"
+],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
